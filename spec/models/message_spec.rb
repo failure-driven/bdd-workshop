@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Message, type: :model do
+RSpec.describe Message do
   it "is valid" do
     message = Message.new(
       body: "the body",

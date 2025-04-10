@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "messages/index", type: :view do
+RSpec.describe "messages/index" do
   before do
     assign(:messages, [
       Message.create!(

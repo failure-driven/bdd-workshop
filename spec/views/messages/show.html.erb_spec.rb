@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "messages/show", type: :view do
+RSpec.describe "messages/show" do
   before do
     assign(:message, Message.create!(
       body: "MyText",
