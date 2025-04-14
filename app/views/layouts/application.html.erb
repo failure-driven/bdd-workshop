@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Bdd Workshop" %></title>
+    <title><%= content_for(:title) || "Guestbook Rails" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -22,7 +22,11 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+<body class="hero is-fullheigh">
+  <%= render "layouts/navbar" %>
+  <main class="container">
     <%= yield %>
-  </body>
+  </main>
+  <%= render "layouts/footer" %>
+</body>
 </html>
