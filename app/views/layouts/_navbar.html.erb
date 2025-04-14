@@ -1,6 +1,6 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <%= link_to root_path, class: "navbar-item" do%>
+    <%= link_to messages_path, class: "navbar-item" do%>
       <%= image_tag(
         "failure-driven-logo-black.png",
         alt: "BDD Workshop Logo",
@@ -20,9 +20,10 @@
 
   <div id="navbar" class="navbar-menu">
     <div class="navbar-start">
-      <%= link_to "Home", root_path, class: "navbar-item"%>
-      <%= link_to "Guestbook", messages_path, class: "navbar-item"%>
-      <%= link_to "Demo", demo_path, class: "navbar-item"%>
+      <%= link_to "Seed DB", home_path, class: "navbar-item"%>
+      <%= link_to "Home", root_path, class: "navbar-item is-hidden"%>
+      <%= link_to "Guestbook", messages_path, class: "navbar-item is-hidden"%>
+      <%= link_to "Demo", demo_path, class: "navbar-item is-hidden"%>
     </div>
   </div>
 </nav>

@@ -10,8 +10,13 @@ GREEN   = \033[0;32m
 YELLOW  = \033[0;33m
 RESET   = \033[0m
 
+.PHONY: install
+install:
+	bundle install
+	bin/rails assets:precompile
+
 .PHONY: setup
-setup:
+setup: install
 	bin/setup
 
 .PHONY: test
@@ -33,7 +38,7 @@ annotate:
 	bundle exec chusaku
 
 .PHONY: build
-build: test lint annotate
+build: install test lint annotate
 
 .PHONY: dev
 dev:

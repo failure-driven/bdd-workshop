@@ -6,9 +6,21 @@ Start by setting up your dev environment from
 
 https://github.com/failure-driven/bdd-workshop
 
+<img
+  src="./public/images/bit_ly_ndc-bdd.png"
+  alt="bit.ly ndc-bdd link to this repo"
+  width="100"
+/>
+
 ### Setup Option 1: Code spaces (easy)
 
 _Use Code Spaces for a seamless experience._
+
+<img
+  src="./public/images/github_codespaces_instructions.png"
+  alt="github codespaces instructions"
+  width="360"
+/>
 
 - `code` -> `codespaces` -> **`Create codespace on main`**
 
@@ -28,25 +40,40 @@ make dev                    # run dev server
 
 ---
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<p align="center">
+  <strong>OR</strong>
+</p>
 
-Things you may want to cover:
+---
 
-* Ruby version
+### Setup Option 2: Local development (advanced)
 
-* System dependencies
+_Note: we will not troubleshoot this option._
 
-* Configuration
+```sh
+git clone git@github.com:failure-driven/bdd-workshop.git
+cd bdd-workshop
 
-* Database creation
+make
+make build                  # runs tests
 
-* Database initialization
+make setup                  # sets up DB and runs dev server
 
-* How to run the test suite
+make dev                    # run dev server
+open http://localhost:3000  # have a go in the browser
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
+## Labs
 
-* ...
+1. [Lab_00.md - Guestbook walk through](./LAB_00.md)
+1. [Lab_01.md - Mandatory body and name in message](./LAB_01.md)
+1. [Lab_02.md - Text Generation](./LAB_02.md)
+1. [Lab_03.md - AI Text Generation](./LAB_03.md)
+1. [Lab_04.md - Text Generation in background job](./LAB_04.md)
+1. [Lab_05.md - Dynamic async loading UI](./LAB_05.md)
+
+---
+
+**END**

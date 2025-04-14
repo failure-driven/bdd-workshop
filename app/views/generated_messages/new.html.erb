@@ -1,0 +1,62 @@
+<h1 class="title">New generated message</h1>
+
+<p style="color: green"><%= notice %></p>
+
+<%= form_with(model: @generated_message.message) do |form| %>
+  <div class="field">
+    <%= form.label :body, class: "label" %>
+    <%= form.text_area :body, class: "textarea", rows: "3", disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: "input", disabled: true %>
+  </div>
+<% end %>
+
+<%= form_with(model: [@generated_message.message, @generated_message]) do |form| %>
+  <% if @generated_message.errors.any? %>
+    <div style="color: red" data-testid="error-message">
+      <h2><%= pluralize(@generated_message.errors.count, "error") %> prohibited this generated_message from being saved:</h2>
+
+      <ul>
+        <% @generated_message.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :body, class: "label" %>
+    <%= form.text_area :body, class: "textarea", rows: "3", data: { testid: "generated-ai-body" }  %>
+  </div>
+
+  <% if @generated_message.body.blank? %>
+    <div class="control">
+      <%= button_to "Refresh",
+        message_generated_message_path(@generated_message.message.id, @generated_message.id),
+        method: :patch,
+        params: { refresh: 1 },
+        class: "button is-link",
+        data: { testid: "refresh" }
+      %>
+    </div>
+  <% end %>
+  <div class="control mt-3">
+    <%= form.submit class: "button is-link", data: { testid: "update-generated-message" } %>
+  </div>
+  <div class="control mt-3">
+    <%= link_to(
+      "Destroy this message",
+      [@generated_message.message, @generated_message],
+      class: "button is-danger",
+      data: {
+        turbo_method: :delete,
+      },
+    ) %>
+  </div>
+  <div class="control mt-3">
+    <%= link_to "Back to message", message_path(id: params[:message_id]), class: "button"%>
+  </div>
+<% end %>

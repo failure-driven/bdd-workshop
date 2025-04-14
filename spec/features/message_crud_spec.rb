@@ -3,16 +3,16 @@
 RSpec.feature "Demonstrate message CRUD methods", :js do
   let(:message_page) { Pages::MessagePage.new }
 
-  scenario "A message is empty and new message posts can be generated" do
+  scenario "A message is empty and new messages can be generated" do
     When "the message is visited" do
       message_page.load
     end
 
-    Then "there are no message posts" do
-      expect(message_page.posts(wait: 0)).to be_empty
+    Then "there are no messages" do
+      expect(message_page.messages(wait: 0)).to be_empty
     end
 
-    When "a new post is created" do
+    When "a new message is created" do
       message_page.new_message.click
       message_page.submit!(
         body: "message body",
@@ -25,11 +25,12 @@ RSpec.feature "Demonstrate message CRUD methods", :js do
     end
 
     And "the message has the expected fields" do
-      expect(message_page.body).to have_text "message body"
-      expect(message_page.name).to have_text "message name"
+      expect(message_page.messages.first.body).to have_text "message body"
+      expect(message_page.messages.first.name).to have_text "message name"
     end
 
     When "the user edits a field" do
+      message_page.messages_list.first.view.click
       message_page.edit_message.click
       message_page.submit!(
         body: "message body that has been modified",
@@ -46,12 +47,11 @@ RSpec.feature "Demonstrate message CRUD methods", :js do
     end
 
     Then "their 1 message is displayed" do
-      expect(message_page.posts.length).to eq 1
-      expect(message_page.posts_text).to eq(
+      expect(message_page.messages.length).to eq 1
+      expect(message_page.messages_text).to eq(
         [
           <<~EO_MESSAGE_CONTENT.chomp,
-            Body: message body that has been modified
-            Name: message name
+            message body that has been modified
           EO_MESSAGE_CONTENT
         ],
       )
@@ -68,7 +68,7 @@ RSpec.feature "Demonstrate message CRUD methods", :js do
     end
 
     And "there are no messages" do
-      expect(message_page.posts).to be_empty
+      expect(message_page.messages).to be_empty
     end
   end
 end

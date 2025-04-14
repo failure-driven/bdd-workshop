@@ -2,13 +2,15 @@
 
 <% content_for :title, "Messages" %>
 
-<h1 class="title">Messages</h1>
+<h1 class="title">Guestbook</h1>
 
 <div id="messages">
   <% @messages.each do |message| %>
-    <%= render message %>
-    <div class="mt-3">
-      <%= link_to "Show this message", message, class: "button" %>
+    <div data-testid="message-<%= message.id%>">
+      <%= render message %>
+      <div class="mt-3">
+        <%= link_to "Show this message", message, class: "button", data: { testid: "view" } %>
+      </div>
     </div>
   <% end %>
 </div>

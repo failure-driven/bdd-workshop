@@ -3,6 +3,15 @@
 <%= render @message %>
 
 <div class="mt-3">
+  <%= link_to(
+    "✨ Generate AI body",
+    message_generated_messages_path(message_id: @message.id),
+    class: "button is-hidden",
+    data: {
+      testid: "generate-ai-body",
+      turbo_method: :post,
+    },
+  ) %>
   <%= link_to "Edit this message", edit_message_path(@message), class: "button" %>
   <%= link_to "Back to messages", messages_path, class: "button"%>
 

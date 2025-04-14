@@ -77,6 +77,7 @@ RSpec.configure do |config|
   # for pausing API requests and forcing API errors
   config.include PauseService, type: :feature
   config.include ForceApiError, type: :feature
+  config.include PauseSpec, type: :feature
 
   config.after(:each, type: :feature) do
     clear_api_error

@@ -1,1 +1,16 @@
 <h1 class="title">BDD Workshop</h1>
+
+<p>
+  the following will drop all records in the database and re-seed it with some default messages
+</p>
+<%= render(ActionButtonComponent.new(
+    label: "Re-seed DB!",
+    action_url: seed_home_path,
+    icon: "go",
+    method: :post,
+    link_class: "button is-primary",
+    data: {
+    testid: "view_component",
+    disable_with: "re-seeding ...",
+    },
+)) %>
