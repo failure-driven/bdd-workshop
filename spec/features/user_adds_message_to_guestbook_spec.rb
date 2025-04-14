@@ -31,6 +31,17 @@ feature "User adds message to guestbook", :js do
         guestbook.submit!
       end
 
+      Then "an error message is shown" do
+        pending "validation on name and text existing"
+        expect(guestbook.notification).to eq(["Name can't be blank"])
+      end
+
+      When "the User submits the form with the body AND name" do
+        guestbook.submit!(
+          name: "Positive Patricia",
+        )
+      end
+
       Then "a success notification is shown" do
         guestbook.when_loaded do |page|
           expect(page.notification).to eq "Message was successfully created."
