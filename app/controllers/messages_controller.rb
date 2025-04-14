@@ -26,14 +26,10 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to @message, notice: "Message was successfully created." }
-        format.json { render :show, status: :created, location: @message }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    if @message.save
+      redirect_to messages_path, notice: "Message was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -41,14 +37,10 @@ class MessagesController < ApplicationController
   # @route PATCH /messages/:id (message)
   # @route PUT /messages/:id (message)
   def update
-    respond_to do |format|
-      if @message.update(message_params)
-        format.html { redirect_to @message, notice: "Message was successfully updated." }
-        format.json { render :show, status: :ok, location: @message }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    if @message.update(message_params)
+      redirect_to @message, notice: "Message was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -57,10 +49,7 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to messages_path, status: :see_other, notice: "Message was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to messages_path, status: :see_other, notice: "Message was successfully destroyed."
   end
 
   private

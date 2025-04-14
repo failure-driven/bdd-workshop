@@ -68,7 +68,7 @@ RSpec.describe "/messages", type: :request do
 
       it "redirects to the created message" do
         post messages_url, params: {message: valid_attributes}
-        expect(response).to redirect_to(message_url(Message.last))
+        expect(response).to redirect_to(messages_url)
       end
     end
 
