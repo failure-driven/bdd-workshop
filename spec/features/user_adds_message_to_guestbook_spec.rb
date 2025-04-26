@@ -54,16 +54,16 @@ feature "User adds message to guestbook", :js do
       #   2. Run the spec - see 1 pending spec
       #      `bin/rspec spec/features/user_adds_message_to_guestbook_spec.rb`
 
-      # Then "an error message is shown" do
-      #   pending "validation on name and text existing"
-      #   expect(guestbook.form_error.map { _1.item.text }).to eq(["Name can't be blank"])
-      # end
+      Then "an error message is shown" do
+        pending "validation on name and text existing"
+        expect(guestbook.form_error.map { _1.item.text }).to eq(["Name can't be blank"])
+      end
 
-      # When "the User submits the form with the body AND name" do
-      #   guestbook.submit!(
-      #     name: "Positive Patricia",
-      #   )
-      # end
+      When "the User submits the form with the body AND name" do
+        guestbook.submit!(
+          name: "Positive Patricia",
+        )
+      end
 
       Then "a success notification is shown" do
         guestbook.when_loaded do |page|

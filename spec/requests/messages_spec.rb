@@ -39,6 +39,11 @@ RSpec.describe "/messages", type: :request do
     #   2. Replace the skip with some invalid attributes like either body or
     #      name being empty
 
+    # {
+    #   body: "body no name",
+    #   name: "",
+    # }
+
     skip("Add a hash of attributes invalid for your model")
   }
 
