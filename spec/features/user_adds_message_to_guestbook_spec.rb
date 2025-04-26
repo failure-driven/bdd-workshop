@@ -112,6 +112,47 @@ feature "User adds message to guestbook", :js do
         guestbook.generate_ai_body.click
       end
 
+      # LAB 04.1
+      # ========
+      # Calling the AI generator can take some time, in this lab we want to
+      # respond to the user immediately that the AI is generating the text and
+      # allow the user to check back to see if it has been generated. The below
+      # spec will fail as it will wait till the AI text has been generated and
+      # not return immediately notifying the user it is running in the
+      # background. This notification will need to be fixed in LAB 04.2 .
+      #
+      # STEPS:
+      #   1. Uncomment the following code
+      #   2. Run the spec - see 1 pending spec
+      #      `bin/rspec spec/features/user_adds_message_to_guestbook_spec.rb`
+
+      # Then "the user is notified that the AI is generating the text" do
+      #   # NOTE: as this is asynchronous, we need to "wait" with "have_content"
+      #   # to make sure the page has reloaded succesfully, before we assert that
+      #   # the notification is what we want. This is a quirk of the
+      #   # Webdriver/Capybara/SitePrism setup we have decided to use and may
+      #   # differ on other platforms.
+      #   pending "AI text being generated in background job"
+      #   expect(page).to have_content "AI text is being generated."
+      #   expect(guestbook.notification).to eq "AI text is being generated."
+      # end
+
+      # Then "When they refresh" do
+      #   guestbook.refresh.click
+      # end
+
+      # Then "the user is still notified text generation is in progress" do
+      #   expect(guestbook.notification).to eq "AI text is being generated."
+      # end
+
+      # When "AI has finished generating the response" do
+      #   perform_enqueued_jobs
+      # end
+
+      # And "they refresh" do
+      #   guestbook.refresh.click
+      # end
+
       Then "the generated AI text is displayed" do
         binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
         SitePrism::Waiter.wait_until_true {
