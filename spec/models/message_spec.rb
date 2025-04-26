@@ -31,19 +31,19 @@ RSpec.describe Message, type: :model do
   #   2. run the test - see failing tests
   #      `bin/rspec spec/model/message_spec.rb`
 
-  # it "is invalid with no body" do
-  #   message = Message.new(
-  #     body: "",
-  #     name: "the name",
-  #   )
-  #   expect(message).not_to be_valid
-  # end
+  it "is invalid with no body" do
+    message = Message.new(
+      body: "",
+      name: "the name",
+    )
+    expect(message).not_to be_valid
+  end
 
-  # it "is invalid with no name" do
-  #   message = Message.new(
-  #     body: "the body",
-  #     name: "",
-  #   )
-  #   expect(message).not_to be_valid
-  # end
+  it "is invalid with no name" do
+    message = Message.new(
+      body: "the body",
+      name: "",
+    )
+    expect(message).not_to be_valid
+  end
 end

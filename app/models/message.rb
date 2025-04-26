@@ -25,8 +25,8 @@ class Message < ApplicationRecord
   #      `bin/rspec spec/model/message_spec.rb`
   #   3. repeat steps 1. and 2. above until the model unit spec passes
 
-  # validates :body, presence: true, allow_blank: false
-  # validates :name, presence: true, allow_blank: false
+  validates :body, presence: true, allow_blank: false
+  validates :name, presence: true, allow_blank: false
 
   def display_body
     generated_message&.body || body
