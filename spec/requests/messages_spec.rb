@@ -24,6 +24,21 @@ RSpec.describe "/messages", type: :request do
   }
 
   let(:invalid_attributes) {
+    # LAB 01.2
+    # ========
+    # Need some invalid attributes to run related tests. Take a look below which
+    # tests require the "invalid_attributes" variable.
+    #
+    # HINT:
+    #   - something similar to the above `valid_attributes` might be a good
+    #     start but with some empty values
+    #
+    # STEPS:
+    #   1. Run the tests - see 3 pending tests
+    #      `bin/rspec spec/requests/messages_spec.rb`
+    #   2. Replace the skip with some invalid attributes like either body or
+    #      name being empty
+
     skip("Add a hash of attributes invalid for your model")
   }
 

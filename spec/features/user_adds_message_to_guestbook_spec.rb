@@ -37,6 +37,34 @@ feature "User adds message to guestbook", :js do
         guestbook.submit!
       end
 
+      # LAB 01.1
+      # ========
+      # We add a new **Then** block with an assertion demonstrating the error
+      # message we expect. Also a new **When** to correct the input data which
+      # will continue the spec down the happy path as before.
+      #
+      # The pending statement, expects this feature spec to fail until it is
+      # implemented, at which point it should be removed.
+      #
+      # MORE INFO:
+      #   - https://rspec.info/features/3-12/rspec-core/pending-and-skipped-examples/pending-examples/
+      #
+      # STEPS:
+      #   1. Uncomment the following code
+      #   2. Run the spec - see 1 pending spec
+      #      `bin/rspec spec/features/user_adds_message_to_guestbook_spec.rb`
+
+      # Then "an error message is shown" do
+      #   pending "validation on name and text existing"
+      #   expect(guestbook.form_error.map { _1.item.text }).to eq(["Name can't be blank"])
+      # end
+
+      # When "the User submits the form with the body AND name" do
+      #   guestbook.submit!(
+      #     name: "Positive Patricia",
+      #   )
+      # end
+
       Then "a success notification is shown" do
         guestbook.when_loaded do |page|
           expect(page.notification).to eq "Message was successfully created."
