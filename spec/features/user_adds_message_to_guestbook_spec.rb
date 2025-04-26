@@ -132,7 +132,6 @@ feature "User adds message to guestbook", :js do
         # the notification is what we want. This is a quirk of the
         # Webdriver/Capybara/SitePrism setup we have decided to use and may
         # differ on other platforms.
-        pending "AI text being generated in background job"
         expect(page).to have_content "AI text is being generated."
         expect(guestbook.notification).to eq "AI text is being generated."
       end

@@ -21,9 +21,9 @@ class GeneratedMessagesController < ApplicationController
     #   1. update the @generated_message.body with the generated text
     #   2. also update the notification flash message below in LAB 02.4
 
-    @generated_message.body = AITextGenerator.generate_text(
-      @generated_message.message.body,
-    )
+    # @generated_message.body = AITextGenerator.generate_text(
+    #   @generated_message.message.body,
+    # )
 
     # LAB 04.2
     # ========
@@ -39,7 +39,7 @@ class GeneratedMessagesController < ApplicationController
     #   2. update the generated message body
     #   3. continue to LAB 04.3 to fix the notification
 
-    # GeneratedMessageJob.perform_later(@generated_message)
+    GeneratedMessageJob.perform_later(@generated_message)
 
     if @generated_message.save
       # LAB 02.4
@@ -66,9 +66,9 @@ class GeneratedMessagesController < ApplicationController
       #   1. fix the flash notification messagecheck if the body is present
       #   2. continue to LAB 04.3 to save and correctly notify
 
-      # flash.now[:notice] = "AI text is being generated."
+      flash.now[:notice] = "AI text is being generated."
 
-      flash.now[:notice] = "AI text successfully generated."
+      # flash.now[:notice] = "AI text successfully generated."
       render :new, status: :see_other
     end
   end
@@ -109,16 +109,15 @@ class GeneratedMessagesController < ApplicationController
     #   3. if YES for 1. and 2. above, return still generated
     #   4. otherwise let the user know it has been generated
 
-    # if params[:refresh]
-    #   flash.now[:notice] = if @generated_message.body.present?
-    #     "AI text successfully generated."
-    #   else
-    #     "AI text is being generated."
-    #   end
-    #   render :new, status: :see_other
-    # elsif @generated_message.update(generated_message_params[:generated_message])
-
-    if @generated_message.update(generated_message_params[:generated_message])
+    if params[:refresh]
+      flash.now[:notice] = if @generated_message.body.present?
+        "AI text successfully generated."
+      else
+        "AI text is being generated."
+      end
+      render :new, status: :see_other
+    elsif @generated_message.update(generated_message_params[:generated_message])
+      # if @generated_message.update(generated_message_params[:generated_message])
       redirect_to \
         @generated_message.message,
         notice: "Generated message was successfully updated."
