@@ -109,8 +109,6 @@ feature "User adds message to guestbook", :js do
 
       When "the user views the message and clicks generate AI text" do
         guestbook.messages_list.last.view.click
-        pending "a generate AI body button existing"
-        binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
         guestbook.generate_ai_body.click
       end
 

@@ -23,7 +23,7 @@
   <%= link_to(
     "✨ Generate AI body",
     message_generated_messages_path(message_id: @message.id),
-    class: "button is-hidden",
+    class: "button",
     data: {
       testid: "generate-ai-body",
       turbo_method: :post,
