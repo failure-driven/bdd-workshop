@@ -92,64 +92,64 @@ feature "User adds message to guestbook", :js do
     #   2. Run the spec - see 1 pending spec `bin/rspec
     #      spec/features/user_adds_message_to_guestbook_spec.rb`
 
-    # scenario "User adds message to the guestbook with AI generated body" do
-    #   When "a new entry is added to the guestbook" do
-    #     guestbook.load
-    #     guestbook.new_message.click
-    #     guestbook.submit!(
-    #       body: "Finally understood the benefits fo testing first",
-    #       name: "Positive Patricia",
-    #     )
-    #   end
+    scenario "User adds message to the guestbook with AI generated body" do
+      When "a new entry is added to the guestbook" do
+        guestbook.load
+        guestbook.new_message.click
+        guestbook.submit!(
+          body: "Finally understood the benefits fo testing first",
+          name: "Positive Patricia",
+        )
+      end
 
-    #   Then "the visitor is told the message is successfully created" do
-    #     binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
-    #     expect(guestbook.notification).to eq "Message was successfully created."
-    #   end
+      Then "the visitor is told the message is successfully created" do
+        binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
+        expect(guestbook.notification).to eq "Message was successfully created."
+      end
 
-    #   When "the user views the message and clicks generate AI text" do
-    #     guestbook.messages_list.last.view.click
-    #     pending "a generate AI body button existing"
-    #     binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
-    #     guestbook.generate_ai_body.click
-    #   end
+      When "the user views the message and clicks generate AI text" do
+        guestbook.messages_list.last.view.click
+        pending "a generate AI body button existing"
+        binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
+        guestbook.generate_ai_body.click
+      end
 
-    #   Then "the generated AI text is displayed" do
-    #     binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
-    #     SitePrism::Waiter.wait_until_true {
-    #       expect(page).to have_content "AI text successfully generated."
-    #     }
-    #     expect(guestbook.notification).to eq "AI text successfully generated."
-    #     expect(
-    #       guestbook.generated_ai_body,
-    #     ).to have_text "AI GENERATED Finally understood the benefits fo testing first"
-    #   end
+      Then "the generated AI text is displayed" do
+        binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
+        SitePrism::Waiter.wait_until_true {
+          expect(page).to have_content "AI text successfully generated."
+        }
+        expect(guestbook.notification).to eq "AI text successfully generated."
+        expect(
+          guestbook.generated_ai_body,
+        ).to have_text "AI GENERATED Finally understood the benefits fo testing first"
+      end
 
-    #   When "when the user continues with the update" do
-    #     guestbook.update_generated_message.click
-    #   end
+      When "when the user continues with the update" do
+        guestbook.update_generated_message.click
+      end
 
-    #   Then "the visitor sees the message is updated" do
-    #     binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
-    #     SitePrism::Waiter.wait_until_true {
-    #       expect(page).to have_content "Generated message was successfully updated."
-    #     }
-    #     expect(guestbook.notification).to eq "Generated message was successfully updated."
-    #     expect(
-    #       guestbook.body,
-    #     ).to have_text "AI GENERATED Finally understood the benefits fo testing first"
-    #   end
+      Then "the visitor sees the message is updated" do
+        binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
+        SitePrism::Waiter.wait_until_true {
+          expect(page).to have_content "Generated message was successfully updated."
+        }
+        expect(guestbook.notification).to eq "Generated message was successfully updated."
+        expect(
+          guestbook.body,
+        ).to have_text "AI GENERATED Finally understood the benefits fo testing first"
+      end
 
-    #   When "the user views all messages" do
-    #     guestbook.view_messages.click
-    #   end
+      When "the user views all messages" do
+        guestbook.view_messages.click
+      end
 
-    #   Then "the guestbook has the new message" do
-    #     binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
-    #     expect(guestbook.messages_text).to include(
-    #       "AI GENERATED Finally understood the benefits fo testing first",
-    #     )
-    #   end
-    # end
+      Then "the guestbook has the new message" do
+        binding.irb if ENV.fetch("SPEC_PAUSE", false) # rubocop:disable Lint/Debugger
+        expect(guestbook.messages_text).to include(
+          "AI GENERATED Finally understood the benefits fo testing first",
+        )
+      end
+    end
   end
 end
