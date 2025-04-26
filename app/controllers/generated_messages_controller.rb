@@ -39,6 +39,8 @@ class GeneratedMessagesController < ApplicationController
     #   2. update the generated message body
     #   3. continue to LAB 04.3 to fix the notification
 
+    # GeneratedMessageJob.perform_later(@generated_message)
+
     if @generated_message.save
       # LAB 02.4
       # ========
@@ -63,6 +65,8 @@ class GeneratedMessagesController < ApplicationController
       # STEPS:
       #   1. fix the flash notification messagecheck if the body is present
       #   2. continue to LAB 04.3 to save and correctly notify
+
+      # flash.now[:notice] = "AI text is being generated."
 
       flash.now[:notice] = "AI text successfully generated."
       render :new, status: :see_other
@@ -104,6 +108,15 @@ class GeneratedMessagesController < ApplicationController
     #   2. check if the refresh button was pressed
     #   3. if YES for 1. and 2. above, return still generated
     #   4. otherwise let the user know it has been generated
+
+    # if params[:refresh]
+    #   flash.now[:notice] = if @generated_message.body.present?
+    #     "AI text successfully generated."
+    #   else
+    #     "AI text is being generated."
+    #   end
+    #   render :new, status: :see_other
+    # elsif @generated_message.update(generated_message_params[:generated_message])
 
     if @generated_message.update(generated_message_params[:generated_message])
       redirect_to \
